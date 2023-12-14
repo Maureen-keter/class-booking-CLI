@@ -9,7 +9,7 @@ class School(Base):
     __tablename__='schools'
     id=Column(Integer(), primary_key=True)
     name=Column(String(), nullable=False)
-    lecture_halls=relationship('LectureHall',back_populates='school')
+    lecture_halls=relationship('LectureHall',backref='school')
 
 class LectureHall(Base):
     __tablename__='lecture_halls'
@@ -17,7 +17,7 @@ class LectureHall(Base):
     id = Column(Integer(), primary_key=True)
     name= Column(String(), unique=True, nullable= False)
     school_id=Column(Integer(), ForeignKey('schools.id'))
-    lectures=relationship('Lecture', back_populates='lecture_hall')
+    lectures=relationship('Lecture', backref='lecture_hall')
 
 class Lecture(Base):
     __tablename__='lectures'
@@ -25,7 +25,7 @@ class Lecture(Base):
     unit_name=Column(String(), nullable=False)
     start_time=Column(DateTime())
     lecture_hall_id=Column(Integer(), ForeignKey('lecture_halls.id'))
-    lecture_hall=relationship('LectureHall', back_populates='lectures')
+    lecture_hall=relationship('LectureHall', backref='lectures')
     
 
     if __name__== '__main__':
