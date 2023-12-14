@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, ForeignKey, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-from datetime import DateTime
+from datetime import datetime
+import click
 
 Base= declarative_base()
 
@@ -28,12 +29,20 @@ class Lecture(Base):
     lecture_hall=relationship('LectureHall', backref='lectures')
     
 
-    if __name__== '__main__':
-        engine= create_engine('sqlite:///lecture_hall.db')
-        Base.metadata.create_all(engine)
+engine= create_engine('sqlite:///lecture_hall.db')
+Base.metadata.create_all(engine)
 
-        Session=sessionmaker(bind=engine)
-        session=Session()
+Session=sessionmaker(bind=engine)
+session=Session()
+
+
+def school(name):
+    school=School(name=name)
+    session.add(school)
+    session.commit()
+    click.echo(f'{name} added successfully')
+
+
 
 
 
