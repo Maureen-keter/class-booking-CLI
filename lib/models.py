@@ -21,6 +21,9 @@ class LectureHall(Base):
         engine= create_engine('sqlite:///lecture_hall.db')
         Base.metadata.create_all(engine)
 
+        Session=sessionmaker(bind=engine)
+        session=Session()
+
 
 
 
