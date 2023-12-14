@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, ForeignKey, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from datetime import DateTime
@@ -17,8 +17,6 @@ class LectureHall(Base):
     id = Column(Integer(), primary_key=True)
     name= Column(String(), unique=True, nullable= False)
     school_id=Column(Integer(), ForeignKey('schools.id'))
-    status=Column(Boolean(), default= False)
-    last_used=Column(DateTime())
     lectures=relationship('Lecture', back_populates='lecture_hall')
 
 class Lecture(Base):
