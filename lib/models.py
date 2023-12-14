@@ -11,7 +11,6 @@ class School(Base):
     name=Column(String(), nullable=False)
     lecture_halls=relationship('LectureHall',back_populates='school')
 
-
 class LectureHall(Base):
     __tablename__='lecture_halls'
 
