@@ -42,6 +42,10 @@ def school(name):
     session.commit()
     click.echo(f'{name} added successfully')
 
+def list_schools():
+    schools=session.query(School).all()
+    print(schools)
+
 
 
 
