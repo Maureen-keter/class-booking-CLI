@@ -46,7 +46,11 @@ def list_schools():
     schools=session.query(School).all()
     print(schools)
 
-
+def add_lecture_hall(school, name):
+    school_obj=session.query(School).filter_by(name=school).first()
+    lecture_hall=LectureHall(name=name, school=school_obj)
+    session.add(lecture_hall)
+    session.commit()
 
 
 
