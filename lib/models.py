@@ -22,7 +22,9 @@ class LectureHall(Base):
 
 class Lecture(Base):
     __tablename__='lectures'
-    x
+    id=Column(Integer(), primary_key=True)
+    unit_name=Column(String(), nullable=False)
+    start_time=Column(DateTime())
     
 
     if __name__== '__main__':
