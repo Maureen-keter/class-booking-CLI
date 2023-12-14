@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean,UniqueConstraint, PrimaryKeyConstraint
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from datetime import DateTime
@@ -16,8 +16,12 @@ class LectureHall(Base):
 
     id = Column(Integer(), primary_key=True)
     name= Column(String(), unique=True, nullable= False)
+    school_id=Column(Integer(), ForeignKey('schools.id'))
     status=Column(Boolean(), default= False)
     last_used=Column(DateTime())
+
+class Lecture(Base):
+    
 
     if __name__== '__main__':
         engine= create_engine('sqlite:///lecture_hall.db')
