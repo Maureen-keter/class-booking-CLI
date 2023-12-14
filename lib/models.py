@@ -21,6 +21,8 @@ class LectureHall(Base):
     last_used=Column(DateTime())
 
 class Lecture(Base):
+    __tablename__='lectures'
+    x
     
 
     if __name__== '__main__':
