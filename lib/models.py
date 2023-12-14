@@ -25,6 +25,8 @@ class Lecture(Base):
     id=Column(Integer(), primary_key=True)
     unit_name=Column(String(), nullable=False)
     start_time=Column(DateTime())
+    lecture_hall_id=Column(Integer(), ForeignKey('lecture_halls.id'))
+    lecture_hall=relationship('LectureHall', back_populates='lectures')
     
 
     if __name__== '__main__':
