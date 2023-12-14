@@ -19,6 +19,7 @@ class LectureHall(Base):
     school_id=Column(Integer(), ForeignKey('schools.id'))
     status=Column(Boolean(), default= False)
     last_used=Column(DateTime())
+    lectures=relationship('Lecture', back_populates='lecture_hall')
 
 class Lecture(Base):
     __tablename__='lectures'
