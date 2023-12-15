@@ -11,4 +11,13 @@ def generate_fake_schools(session, num_schools=5):
         session.add(school)
     session.commit()
 
+def generate_fake_lecture_halls(session, num_lecture_halls=10):
+    schools = session.query(School).all()
+
+    for _ in range(num_lecture_halls):
+        lecture_hall_name = fake.unique.word()
+        school = fake.random_element(schools)
+        lecture_hall = LectureHall(name=lecture_hall_name, school=school)
+        session.add(lecture_hall)
+    session.commit()
 
