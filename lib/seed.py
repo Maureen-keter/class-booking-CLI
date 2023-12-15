@@ -34,3 +34,10 @@ def generate_fake_lectures(session, num_lectures=50):
         session.add(lecture)
     session.commit()
 
+if __name__ == "__main__":
+    Base.metadata.create_all(engine)
+    session = Session(bind=engine)
+    generate_fake_schools(session)
+    generate_fake_lecture_halls(session)
+    generate_fake_lectures(session)
+
