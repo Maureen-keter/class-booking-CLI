@@ -21,7 +21,7 @@ def generate_fake_lecture_halls(session, num_lecture_halls=10):
         session.add(lecture_hall)
     session.commit()
 
-def generate_fake_lectures(session, num_lectures=50):
+def generate_fake_lectures(session, num_lectures=20):
     lecture_halls = session.query(LectureHall).all()
 
     for _ in range(num_lectures):
