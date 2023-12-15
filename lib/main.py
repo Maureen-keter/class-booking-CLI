@@ -94,8 +94,21 @@ def delete_lecture_hall():
     else:
         click.echo(f'Lecture hall "{delete_hall_name}" not found.')
 
-
-
+if __name__ == '__main__':
+    function_to_run = click.prompt(
+        'Choose a function to run:\n'
+        '1. add_school\n'
+        '2. add_lecture_hall\n'
+        '3. add_lecture\n'
+        '4. display_schools\n'
+        '5. display_lecture_halls\n'
+        '6. display_lectures\n'
+        '7. update_school\n'
+        '8. update_lecture_hall\n'
+        '9. delete_school\n'
+        '10. delete_lecture_hall\n',
+        type=int
+    )
 
 
 
