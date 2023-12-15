@@ -22,10 +22,17 @@ def add_lecture_hall():
     session.commit()
     click.echo(f'Lecture hall "{lecture_hall.name}" added successfully')
 
+def add_lecture():
+    lecture_hall_name = click.prompt('Enter lecture hall name', type=str)
+    lecture_hall = session.query(LectureHall).filter_by(name=lecture_hall_name).first()
 
+    if not lecture_hall:
+        click.echo(f'Lecture hall "{lecture_hall_name}" not found.')
+        return
 
-
-
-
-
+    unit_name = click.prompt('Enter unit name', type=str)
+    lecture = Lecture(unit_name=unit_name, lecture_hall=lecture_hall)
+    session.add(lecture)
+    session.commit()
+    click.echo(f'Lecture "{lecture.unit_name}" added successfully')
 
