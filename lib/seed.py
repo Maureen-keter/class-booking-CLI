@@ -21,3 +21,16 @@ def generate_fake_lecture_halls(session, num_lecture_halls=10):
         session.add(lecture_hall)
     session.commit()
 
+def generate_fake_lectures(session, num_lectures=50):
+    lecture_halls = session.query(LectureHall).all()
+
+    for _ in range(num_lectures):
+        unit_name = fake.catch_phrase()
+        start_time = fake.date_time_this_decade()
+        end_time = start_time + fake.time_delta()
+
+        lecture_hall = fake.random_element(lecture_halls)
+        lecture = Lecture(unit_name=unit_name, start_time=start_time, end_time=end_time, lecture_hall=lecture_hall)
+        session.add(lecture)
+    session.commit()
+
