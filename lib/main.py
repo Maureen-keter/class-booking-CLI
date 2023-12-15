@@ -72,3 +72,14 @@ def update_lecture_hall():
     else:
         click.echo(f'Lecture hall with ID {hall_id} not found.')
 
+def delete_school():
+    delete_school_name = click.prompt('Enter school name to delete', type=str)
+    school_to_delete = session.query(School).filter_by(name=delete_school_name).first()
+
+    if school_to_delete:
+        session.delete(school_to_delete)
+        session.commit()
+        click.echo(f'School "{delete_school_name}" deleted successfully')
+    else:
+        click.echo(f'School "{delete_school_name}" not found.')
+
