@@ -40,3 +40,7 @@ def display_schools():
     schools = session.query(School).all()
     click.echo(f'Schools: {schools}')
 
+def display_lecture_halls():
+    lecture_halls = {hall.id: hall.name for hall in session.query(LectureHall).all()}
+    click.echo(f'Lecture Halls: {lecture_halls}')
+
