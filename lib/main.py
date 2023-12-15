@@ -110,6 +110,30 @@ if __name__ == '__main__':
         type=int
     )
 
+    if function_to_run == 1:
+        add_school()
+    elif function_to_run == 2:
+        add_lecture_hall()
+    elif function_to_run == 3:
+        add_lecture()
+    elif function_to_run == 4:
+        display_schools()
+    elif function_to_run == 5:
+        display_lecture_halls()
+    elif function_to_run == 6:
+        display_lectures()
+    elif function_to_run == 7:
+        update_school()
+    elif function_to_run == 8:
+        update_lecture_hall()
+    elif function_to_run == 9:
+        delete_school()
+    elif function_to_run == 10:
+        delete_lecture_hall()
+    else:
+        click.echo('Invalid option. Please choose a valid function.')
+
+
 
 
 
