@@ -60,3 +60,15 @@ def update_school():
     else:
         click.echo(f'School with ID {school_id} not found.')
 
+def update_lecture_hall():
+    hall_id = click.prompt('Enter lecture hall ID to update', type=int)
+    new_hall_name = click.prompt('Enter new lecture hall name', type=str)
+    lecture_hall = session.query(LectureHall).get(hall_id)
+
+    if lecture_hall:
+        lecture_hall.name = new_hall_name
+        session.commit()
+        click.echo(f'Lecture hall "{lecture_hall.name}" updated successfully')
+    else:
+        click.echo(f'Lecture hall with ID {hall_id} not found.')
+
