@@ -48,3 +48,15 @@ def display_lectures():
     lectures = {lec.id: lec.unit_name for lec in session.query(Lecture).all()}
     click.echo(f'Lectures: {lectures}')
 
+def update_school():
+    school_id = click.prompt('Enter school ID to update', type=int)
+    new_name = click.prompt('Enter new school name', type=str)
+    school = session.query(School).get(school_id)
+    
+    if school:
+        school.name = new_name
+        session.commit()
+        click.echo(f'School "{school.name}" updated successfully')
+    else:
+        click.echo(f'School with ID {school_id} not found.')
+
