@@ -36,3 +36,7 @@ def add_lecture():
     session.commit()
     click.echo(f'Lecture "{lecture.unit_name}" added successfully')
 
+def display_schools():
+    schools = session.query(School).all()
+    click.echo(f'Schools: {schools}')
+
