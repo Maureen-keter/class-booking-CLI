@@ -11,8 +11,14 @@ class School(Base):
     name = Column(String(), nullable=False)
     lecture_halls = relationship('LectureHall', backref='school')
 
+    def __repr__(self):
+        return f"<School(id={self.id}, name='{self.name}')>"
+
 class LectureHall(Base):
     __tablename__ = 'lecture_halls'
+
+    def __repr__(self):
+        return f"<LectureHall(id={self.id}, name='{self.name}', school_id={self.school_id})>"
 
     id = Column(Integer(), primary_key=True)
     name = Column(String(), unique=True, nullable=False)
@@ -28,6 +34,11 @@ class Lecture(Base):
     end_time = Column(DateTime())
     lecture_hall_id = Column(Integer(), ForeignKey('lecture_halls.id'))
     lecture_hall = relationship('LectureHall', back_populates='lectures')
+
+    def __repr__(self):
+        return f"<Lecture(id={self.id}, unit_name='{self.unit_name}', " \
+               f"start_time={self.start_time}, end_time={self.end_time}, " \
+               f"lecture_hall_id={self.lecture_hall_id})>"
 
 engine = create_engine('sqlite:///lecture_hall.db')
 Base.metadata.create_all(engine)
