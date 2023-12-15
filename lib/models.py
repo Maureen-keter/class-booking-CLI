@@ -9,22 +9,23 @@ class School(Base):
     __tablename__ = 'schools'
     id = Column(Integer(), primary_key=True)
     name = Column(String(), nullable=False)
-    lecture_halls = relationship('LectureHall', backref='school')
-
+    lecture_halls = relationship('LectureHall', back_populates='school')
+   
     def __repr__(self):
         return f"<School(id={self.id}, name='{self.name}')>"
 
 class LectureHall(Base):
     __tablename__ = 'lecture_halls'
 
-    def __repr__(self):
-        return f"<LectureHall(id={self.id}, name='{self.name}', school_id={self.school_id})>"
-
     id = Column(Integer(), primary_key=True)
     name = Column(String(), unique=True, nullable=False)
     school_id = Column(Integer(), ForeignKey('schools.id'))
     lectures = relationship('Lecture', back_populates='lecture_hall')
     school = relationship('School', back_populates='lecture_halls')
+
+    def __repr__(self):
+        return f"<LectureHall(id={self.id}, name='{self.name}', school_id={self.school_id})>"
+
 
 class Lecture(Base):
     __tablename__ = 'lectures'
